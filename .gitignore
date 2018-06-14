@@ -15,9 +15,13 @@ build/
 target/  
 bin/  
 dependency-reduced-pom.xml  
+datafiles
+Figs
+Figs_Umlet
   
 # Eclipse Project Files  
   
 .classpath  
 .project  
 .settings/ 
+
