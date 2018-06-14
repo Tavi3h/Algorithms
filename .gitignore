@@ -1,27 +1,9 @@
-# Operating System Files  
+ 
+# Build Artifacts & folders
   
-*.DS_Store  
-Thumbs.db  
-*.sw?  
-.#*  
-*#  
-*~  
-*.sublime-*  
-  
-# Build Artifacts  
-  
-.gradle/  
-build/  
-target/  
-bin/  
-dependency-reduced-pom.xml  
-datafiles
-Figs
-Figs_Umlet
-  
-# Eclipse Project Files  
-  
-.classpath  
-.project  
-.settings/ 
+bin/   
+datafiles/
+Figs/
+Figs_Umlet/
+ 
 
