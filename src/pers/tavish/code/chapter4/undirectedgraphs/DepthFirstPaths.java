@@ -1,5 +1,6 @@
 package pers.tavish.code.chapter4.undirectedgraphs;
 
+import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Stack;
 
 // 深度优先搜索查找图中的路径
@@ -59,6 +60,27 @@ public class DepthFirstPaths {
 		int V = marked.length;
 		if (v < 0 || v >= V) {
 			throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
+		}
+	}
+	
+	public static void main(String[] args) {
+		
+		Graph G = new Graph(new In(args[0]));
+		int s = Integer.parseInt(args[1]);
+		DepthFirstPaths search = new DepthFirstPaths(G, s);
+		
+		for (int v = 0; v < G.V(); v++) {
+			System.out.print(s + " to " + v + ": ");
+			if (search.hasPathTo(v)) {
+				for (int  x : search.pathTo(v)) {
+					if (x == s) {
+						System.out.print(x);
+					} else {
+						System.out.print("-" + x);
+					}
+				}
+			}
+			System.out.println();
 		}
 	}
 }
