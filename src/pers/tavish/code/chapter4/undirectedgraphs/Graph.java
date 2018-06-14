@@ -19,7 +19,7 @@ public class Graph {
 	private Bag<Integer>[] adj;
 
 	/*
-	 * 构造函数
+	 * 构造函数：构造一个只有定点，但是所有顶点均为连接（不含有边）的图
 	 */
 	@SuppressWarnings("unchecked")
 	public Graph(int V) {
