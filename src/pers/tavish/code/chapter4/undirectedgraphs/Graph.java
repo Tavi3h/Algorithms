@@ -89,6 +89,61 @@ public class Graph {
 	}
 
 	/*
+	 * 构造函数：从输入流读取邻接表，并构造图 参数isAdjFile只是用来与其他构造函数进行区分，这个参数必须传入true。
+	 */
+	@SuppressWarnings("unchecked")
+	public Graph(In in, boolean isAdjFile) {
+
+		if (!isAdjFile) {
+			throw new IllegalArgumentException("Argument isAdjFile must be true.");
+		}
+
+		try {
+
+			/*
+			 * 读取第一行：13 vertices, 13 edges 得到V = 13, E = 13
+			 */
+			String[] ve = in.readLine().split(", ");
+			this.V = Integer.parseInt(ve[0].substring(0, ve[0].indexOf(" ")));
+			this.E = Integer.parseInt(ve[1].substring(0, ve[1].indexOf(" ")));
+
+			// 根据V创建邻接表数组
+			adj = (Bag<Integer>[]) new Bag[V];
+			for (int v = 0; v < V; v++) {
+				adj[v] = new Bag<>();
+			}
+
+			// 遍历每一个元素
+			for (int i = 0; i < V; i++) {
+
+				/*
+				 * 读取行：0: 6 5 2 1
+				 */
+				String[] datas = in.readLine().split(": ");
+				if (datas.length == 1) {
+					// length = 1，说明该行的元素是孤立的，例如“12: ”，跳过该行
+					continue;
+				}
+
+				int v = Integer.parseInt(datas[0]); // 获取到元素，0
+				String[] adjs = datas[1].split(" "); // 获取其邻接元素，6、5、2、1
+				Stack<Integer> reverse = new Stack<>();
+				// 压入栈
+				for (int j = 0; j < adjs.length; j++) {
+					reverse.push(Integer.parseInt(adjs[j]));
+				}
+				// 从栈中取出，此时add的顺序为1、2、5、6
+				for (Integer w : reverse) {
+					adj[v].add(w);
+				}
+			}
+
+		} catch (NoSuchElementException e) {
+			throw new IllegalArgumentException("invalid input format in Graph constructor", e);
+		}
+	}
+
+	/*
 	 * 返回图的顶点数
 	 */
 	public int V() {
@@ -108,6 +163,17 @@ public class Graph {
 	public void addEdge(int v, int w) {
 		validateVertex(v);
 		validateVertex(w);
+
+		// 防止自环
+		if (v == w) {
+			throw new IllegalArgumentException("Self Edge is not permitted.");
+		}
+
+		// 防止平行边
+		if (hasEdge(v, w)) {
+			throw new IllegalArgumentException("Parallel Edge is not permitted.");
+		}
+
 		E++;
 		adj[v].add(w);
 		adj[w].add(v);
@@ -129,6 +195,21 @@ public class Graph {
 		return adj[v].size();
 	}
 
+	/*
+	 * （练习4.1.4）判断在v和w之间是否存在一条边
+	 */
+	public boolean hasEdge(int v, int w) {
+		validateVertex(v);
+		validateVertex(w);
+
+		for (Integer i : adj(v)) {
+			if (i == w) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder s = new StringBuilder();
@@ -148,5 +229,10 @@ public class Graph {
 		if (v < 0 || v >= V) {
 			throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
 		}
+	}
+
+	public static void main(String[] args) {
+		Graph G = new Graph(new In(args[0]), true);
+		System.out.println(G);
 	}
 }

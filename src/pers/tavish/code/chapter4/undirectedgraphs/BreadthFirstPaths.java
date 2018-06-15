@@ -1,11 +1,11 @@
 package pers.tavish.code.chapter4.undirectedgraphs;
 
-import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.Stack;
 
 public class BreadthFirstPaths {
-	private static final int INFINITY = Integer.MAX_VALUE;
+	
+	private static final int INFINITY = Integer.MAX_VALUE; // initial distance between s and v
 	private boolean[] marked; // marked[v] = is there an s-v path
 	private int[] edgeTo; // edgeTo[v] = previous edge on shortest s-v path
 	private int[] distTo; // distTo[v] = number of edges shortest s-v path
@@ -83,26 +83,42 @@ public class BreadthFirstPaths {
 		if (v < 0 || v >= V)
 			throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
 	}
-	
+
 	public static void main(String[] args) {
-		
-		Graph G = new Graph(new In(args[0]));
-		int s = Integer.parseInt(args[1]);
-		BreadthFirstPaths search = new BreadthFirstPaths(G, s);
-		
+
+		Graph G = new Graph(12);
+		G.addEdge(8, 4);
+		G.addEdge(2, 3);
+		G.addEdge(1, 11);
+		G.addEdge(0, 6);
+		G.addEdge(3, 6);
+		G.addEdge(10, 3);
+		G.addEdge(7, 11);
+		G.addEdge(7, 8);
+		G.addEdge(11, 8);
+		G.addEdge(2, 0);
+		G.addEdge(6, 2);
+		G.addEdge(5, 2);
+		G.addEdge(5, 10);
+		G.addEdge(5, 0);
+		G.addEdge(8, 1);
+		G.addEdge(4, 1);
+
+		BreadthFirstPaths bfp = new BreadthFirstPaths(G, 0);
+
 		for (int v = 0; v < G.V(); v++) {
-			System.out.print(s + " to " + v + ": ");
-			if (search.hasPathTo(v)) {
-				for (int  x : search.pathTo(v)) {
-					if (x == s) {
+			System.out.print(0 + " to " + v + ": ");
+			if (bfp.hasPathTo(v)) {
+				for (int x : bfp.pathTo(v)) {
+					if (x == 0) {
 						System.out.print(x);
 					} else {
 						System.out.print("-" + x);
 					}
 				}
+				System.out.print(" dist " + bfp.distTo(v));
 			}
 			System.out.println();
 		}
 	}
-
 }
