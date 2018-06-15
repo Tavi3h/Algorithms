@@ -1,5 +1,6 @@
 package pers.tavish.code.chapter4.undirectedgraphs;
 
+import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.Stack;
 
@@ -55,9 +56,10 @@ public class BreadthFirstPaths {
 
 	// 广度优先搜索查找图中的路径
 	private void bfs(Graph G, int s) {
-		Queue<Integer> q = new Queue<Integer>();
-		for (int v = 0; v < G.V(); v++)
+		Queue<Integer> q = new Queue<>();
+		for (int v = 0; v < G.V(); v++) {
 			distTo[v] = INFINITY;
+		}
 		distTo[s] = 0;
 		marked[s] = true;
 		q.enqueue(s);
@@ -80,6 +82,27 @@ public class BreadthFirstPaths {
 		int V = marked.length;
 		if (v < 0 || v >= V)
 			throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
+	}
+	
+	public static void main(String[] args) {
+		
+		Graph G = new Graph(new In(args[0]));
+		int s = Integer.parseInt(args[1]);
+		BreadthFirstPaths search = new BreadthFirstPaths(G, s);
+		
+		for (int v = 0; v < G.V(); v++) {
+			System.out.print(s + " to " + v + ": ");
+			if (search.hasPathTo(v)) {
+				for (int  x : search.pathTo(v)) {
+					if (x == s) {
+						System.out.print(x);
+					} else {
+						System.out.print("-" + x);
+					}
+				}
+			}
+			System.out.println();
+		}
 	}
 
 }

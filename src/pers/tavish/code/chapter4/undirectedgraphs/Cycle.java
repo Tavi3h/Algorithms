@@ -1,10 +1,10 @@
 package pers.tavish.code.chapter4.undirectedgraphs;
 
-import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.Stack;
 
 // 使用深度优先搜索处理图，判断图G是否为无环图
 public class Cycle {
+
 	private boolean[] marked;
 	private int[] edgeTo;
 	private Stack<Integer> cycle;
@@ -52,10 +52,7 @@ public class Cycle {
 			if (!marked[w]) {
 				edgeTo[w] = v;
 				dfs(G, v, w);
-			}
-
-			// check for cycle (but disregard reverse of edge leading to v)
-			else if (w != u) {
+			} else if (w != u) { // check for cycle (but disregard reverse of edge leading to v)
 				cycle = new Stack<>();
 				for (int x = v; x != w; x = edgeTo[x]) {
 					cycle.push(x);

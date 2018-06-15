@@ -1,7 +1,10 @@
 package pers.tavish.code.chapter4.undirectedgraphs;
 
+import edu.princeton.cs.algs4.In;
+
 // 使用深度优先搜索处理图，图G是否是二分图（双色问题）
 public class TwoColor {
+
 	private boolean[] marked;
 	private boolean[] color;
 	private boolean isTwoColorable = true;
@@ -30,5 +33,10 @@ public class TwoColor {
 
 	public boolean isBipartite() {
 		return isTwoColorable;
+	}
+	
+	public static void main(String[] args) {
+		TwoColor tw = new TwoColor(new Graph(new In(args[0])));
+		System.out.println(tw.isBipartite());
 	}
 }
