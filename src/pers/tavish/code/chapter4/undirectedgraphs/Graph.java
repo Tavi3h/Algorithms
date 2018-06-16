@@ -115,7 +115,8 @@ public class Graph {
 
 			// 遍历每一个元素
 			for (int i = 0; i < V; i++) {
-
+				
+				
 				/*
 				 * 读取行：0: 6 5 2 1
 				 */
@@ -126,18 +127,31 @@ public class Graph {
 				}
 
 				int v = Integer.parseInt(datas[0]); // 获取到元素，0
+				validateVertex(v); // 检查顶点v是否合法
+				
 				String[] adjs = datas[1].split(" "); // 获取其邻接元素，6、5、2、1
 				Stack<Integer> reverse = new Stack<>();
+				
 				// 压入栈
 				for (int j = 0; j < adjs.length; j++) {
-					reverse.push(Integer.parseInt(adjs[j]));
+					int w = Integer.parseInt(adjs[j]);
+					validateVertex(w); // 检查顶点w是否合法
+					reverse.push(w);
 				}
 				// 从栈中取出，此时add的顺序为1、2、5、6
 				for (Integer w : reverse) {
+					// 防止自环
+					if (v == w) {
+						throw new IllegalArgumentException("Self Edge is not permitted.");
+					}
+
+					// 防止平行边
+					if (hasEdge(v, w)) {
+						throw new IllegalArgumentException("Parallel Edge is not permitted.");
+					}
 					adj[v].add(w);
 				}
 			}
-
 		} catch (NoSuchElementException e) {
 			throw new IllegalArgumentException("invalid input format in Graph constructor", e);
 		}
@@ -161,9 +175,7 @@ public class Graph {
 	 * 在图中添加一条无向的边
 	 */
 	public void addEdge(int v, int w) {
-		validateVertex(v);
-		validateVertex(w);
-
+		
 		// 防止自环
 		if (v == w) {
 			throw new IllegalArgumentException("Self Edge is not permitted.");

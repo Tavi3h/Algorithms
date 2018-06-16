@@ -34,7 +34,14 @@ public class TwoColor {
 	public boolean isBipartite() {
 		return isTwoColorable;
 	}
-	
+
+	/*
+	 * 如果可以双色处理，返回着色方案
+	 */
+	public boolean[] color() {
+		return color;
+	}
+
 	public static void main(String[] args) {
 		TwoColor tw = new TwoColor(new Graph(new In(args[0])));
 		System.out.println(tw.isBipartite());
