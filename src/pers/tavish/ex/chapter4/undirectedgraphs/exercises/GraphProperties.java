@@ -1,4 +1,4 @@
-package pers.tavish.ex.chapter4.exercises;
+package pers.tavish.ex.chapter4.undirectedgraphs.exercises;
 
 import java.util.ArrayList;
 import java.util.List;

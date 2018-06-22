@@ -1,4 +1,4 @@
-package pers.tavish.ex.chapter4.creativeproblems;
+package pers.tavish.ex.chapter4.undirectedgraphs.creativeproblems;
 
 import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.GraphGenerator;

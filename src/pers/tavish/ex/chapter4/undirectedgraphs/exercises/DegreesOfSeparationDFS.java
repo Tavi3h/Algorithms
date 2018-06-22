@@ -1,4 +1,4 @@
-package pers.tavish.ex.chapter4.exercises;
+package pers.tavish.ex.chapter4.undirectedgraphs.exercises;
 
 import edu.princeton.cs.algs4.StdIn;
 import pers.tavish.code.chapter4.undirectedgraphs.DepthFirstPaths;

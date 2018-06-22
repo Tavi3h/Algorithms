@@ -1,4 +1,4 @@
-package pers.tavish.ex.chapter4.experiments;
+package pers.tavish.ex.chapter4.undirectedgraphs.experiments;
 
 import edu.princeton.cs.algs4.StdRandom;
 import pers.tavish.code.chapter4.undirectedgraphs.Graph;

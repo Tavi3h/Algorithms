@@ -1,4 +1,4 @@
-package pers.tavish.ex.chapter4.exercises;
+package pers.tavish.ex.chapter4.undirectedgraphs.exercises;
 
 import pers.tavish.code.chapter1.casestudyunionfind.QuickUnionUF;
 import pers.tavish.code.chapter4.undirectedgraphs.Graph;
