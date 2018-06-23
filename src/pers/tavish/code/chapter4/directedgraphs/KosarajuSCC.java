@@ -27,7 +27,9 @@ public class KosarajuSCC {
 		marked[v] = true;
 		id[v] = count;
 		for (int w : G.adj(v)) {
-			dfs(G, w);
+			if (!marked[w]) {
+				dfs(G, w);
+			}
 		}
 	}
 
@@ -47,6 +49,7 @@ public class KosarajuSCC {
 	public static void main(String[] args) {
 
 		Digraph G = new Digraph(new In(args[0]));
+		
 		KosarajuSCC scc = new KosarajuSCC(G);
 
 		// number of connected components

@@ -102,8 +102,20 @@ public class Digraph {
 	 * 在v和w之间添加一条v指向w的有向边
 	 */
 	public void addEdge(int v, int w) {
+
+//		// 防止自环
+//		if (v == w) {
+//			throw new IllegalArgumentException("Self Edge is not permitted.");
+//		}
+//
+//		// 防止平行边
+//		if (hasEdge(v, w)) {
+//			throw new IllegalArgumentException("Parallel Edge is not permitted.");
+//		}
+		
 		validateVertex(v);
 		validateVertex(w);
+		
 		adj[v].add(w);
 		indegree[w]++;
 		E++;
@@ -160,6 +172,22 @@ public class Digraph {
 			s.append(NEWLINE);
 		}
 		return s.toString();
+	}
+	
+	/*
+	 * 判断是否存在v->w
+	 */
+	public boolean hasEdge(int v, int w) {
+		
+		validateVertex(v);
+		validateVertex(w);
+		
+		for (int element : adj(v)) {
+			if (element == w) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	// 判断顶点v是否合法
