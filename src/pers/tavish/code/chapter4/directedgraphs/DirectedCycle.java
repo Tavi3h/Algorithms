@@ -38,8 +38,8 @@ public class DirectedCycle {
 				cycle.push(w);
 				cycle.push(v);
 			}
-			onStack[v] = false;
 		}
+		onStack[v] = false;
 	}
 
 	public boolean hasCycle() {

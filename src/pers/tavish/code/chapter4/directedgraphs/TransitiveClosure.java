@@ -11,7 +11,7 @@ public class TransitiveClosure {
 		}
 	}
 	
-	boolean reachable(int v, int w) {
+	public boolean reachable(int v, int w) {
 		return all[v].marked(w);
 	}
 }

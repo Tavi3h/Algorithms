@@ -9,20 +9,20 @@ import pers.tavish.code.chapter4.directedgraphs.Topological;
 public class Ex429 {
 	
 	// 判断order是否是G的拓扑排序
-	public static boolean isTopoOrder(Digraph G, Iterable<Integer> order) {
+	public static boolean isTopOrder(Digraph G, Iterable<Integer> order) {
 
 		// 获取图G的拓扑排序
-		Iterable<Integer> topoOrder = new Topological(G).order();
+		Iterable<Integer> topOrder = new Topological(G).order();
 
 		// 比较topoOrder、order
-		Iterator<Integer> topoIter = topoOrder.iterator();
+		Iterator<Integer> topIter = topOrder.iterator();
 		Iterator<Integer> orderIter = order.iterator();
 
-		while (topoIter.hasNext()) {
+		while (topIter.hasNext()) {
 			if (!orderIter.hasNext()) {
 				return false;
 			}
-			int v = topoIter.next();
+			int v = topIter.next();
 			int w = orderIter.next();
 			if (v != w) {
 				return false;
