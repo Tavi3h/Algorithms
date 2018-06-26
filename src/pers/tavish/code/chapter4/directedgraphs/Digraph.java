@@ -122,7 +122,7 @@ public class Digraph {
 	}
 
 	/*
-	 * 返回顶点v的邻接表
+	 * 返回顶点v指向的顶点
 	 */
 	public Iterable<Integer> adj(int v) {
 		validateVertex(v);
