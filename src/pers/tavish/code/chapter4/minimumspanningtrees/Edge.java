@@ -1,6 +1,6 @@
 package pers.tavish.code.chapter4.minimumspanningtrees;
 
-// 加权无向图的数据类型
+// 加权无向边的数据类型
 public class Edge implements Comparable<Edge> {
 
 	private final int v; // vertex v
