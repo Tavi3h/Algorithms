@@ -1,5 +1,8 @@
 package pers.tavish.code.chapter4.directedgraphs;
 
+import pers.tavish.code.chapter4.shortestpaths.EdgeWeightedDigraph;
+import pers.tavish.code.chapter4.shortestpaths.EdgeWeightedDirectedCycle;
+
 // 拓扑排序
 public class Topological {
 	
@@ -12,6 +15,14 @@ public class Topological {
 			order = dfs.reversePost();
 		}
 	}
+	
+    public Topological(EdgeWeightedDigraph G) {
+        EdgeWeightedDirectedCycle finder = new EdgeWeightedDirectedCycle(G);
+        if (!finder.hasCycle()) {
+            DepthFirstOrder dfs = new DepthFirstOrder(G);
+            order = dfs.reversePost();
+        }
+    }
 	
 	public Iterable<Integer> order() {
 		return order;
